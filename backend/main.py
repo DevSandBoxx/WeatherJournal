@@ -5,12 +5,31 @@ import requests
 import openmeteo_requests
 from flask_cors import CORS
 from datetime import datetime
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
 
+load_dotenv()
+
+# Access the environment variables
+firebase_config = {
+    "type": "service_account",
+    "project_id": os.getenv("FIREBASE_PROJECT_ID"),
+    "private_key_id": os.getenv("FIREBASE_PRIVATE_KEY_ID"),
+    "private_key": os.getenv("FIREBASE_PRIVATE_KEY").replace("\\n", "\n"),  # Handle newlines in private key
+    "client_email": os.getenv("FIREBASE_CLIENT_EMAIL"),
+    "client_id": os.getenv("FIREBASE_CLIENT_ID"),
+    "auth_uri": os.getenv("FIREBASE_AUTH_URI"),
+    "token_uri": os.getenv("FIREBASE_TOKEN_URI"),
+    "auth_provider_x509_cert_url": os.getenv("FIREBASE_AUTH_PROVIDER_X509_CERT_URL"),
+    "client_x509_cert_url": os.getenv("FIREBASE_CLIENT_X509_CERT_URL"),
+}
+
+
 # Initialize the Firebase app with your credentials
-cred = credentials.Certificate("weatherjou-firebase-adminsdk-fbsvc-1bbca6d79d.json")
+cred = credentials.Certificate(firebase_config)
 firebase_admin.initialize_app(cred)
 
 openmeteo = openmeteo_requests.Client()
