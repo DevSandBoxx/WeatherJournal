@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/shado/Documents/College/Spring 2025/CS 4261/WeatherJournal/backend/.venv"
+set -gx VIRTUAL_ENV "/Users/shado/Documents/College/Spring2025/CS4261/WeatherJournal/backend2/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

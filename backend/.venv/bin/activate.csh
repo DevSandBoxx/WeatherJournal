@@ -9,7 +9,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/Users/shado/Documents/College/Spring 2025/CS 4261/WeatherJournal/backend/.venv"
+setenv VIRTUAL_ENV "/Users/shado/Documents/College/Spring2025/CS4261/WeatherJournal/backend2/.venv"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

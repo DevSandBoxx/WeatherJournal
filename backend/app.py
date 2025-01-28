@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 import firebase_admin
 from firebase_admin import credentials, firestore
-import requests
 import openmeteo_requests
 from flask_cors import CORS
 from datetime import datetime

@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/shado/Documents/College/Spring 2025/CS 4261/WeatherJournal/backend/.venv/bin/python3" "$0" "$@"
-' '''
+#!/Users/shado/Documents/College/Spring2025/CS4261/WeatherJournal/backend2/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
