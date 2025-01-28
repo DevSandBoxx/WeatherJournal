@@ -35,7 +35,8 @@ export default function CustomTabs() {
       <Tabs.Screen
         name="(journal)"
         options={{
-          title: "Journal",
+          title: "My Journals",
+          headerShown: true,
           tabBarIcon: ({ focused }) => (
             <MaterialIcons name="book" size={24} color="black" />
           ),

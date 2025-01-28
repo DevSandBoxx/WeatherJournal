@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import {
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import {
   TextInput,
   IconButton,
@@ -24,7 +29,7 @@ export default function Modal() {
   console.log(params);
 
   const createJournal = async () => {
-    const apiUrl = `http://127.0.0.1:5000/createJournal`;
+    const apiUrl = `https://my-weather-journal-4d528b61db0e.herokuapp.com/createJournal`;
 
     const response = await fetch(apiUrl, {
       method: "POST", // Specify POST method
@@ -50,34 +55,40 @@ export default function Modal() {
 
   return (
     <>
-      <View style={styles.container}>
-        {/* Close Button (using IconButton from React Native Paper) */}
-        <View style={styles.header}>
-          <Text variant="displayLarge">My Mood Today</Text>
-          {isPresented && (
-            <Link href="../">
-              <IconButton
-                icon="close"
-                size={30}
-                onPress={() => router.canGoBack()} // Dismisses the modal
-              />
-            </Link>
-          )}
-        </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          {/* Close Button (using IconButton from React Native Paper) */}
+          <View style={styles.header}>
+            <Text variant="displayLarge">My Mood Today</Text>
+            {isPresented && (
+              <Link href="../">
+                <IconButton
+                  icon="close"
+                  size={30}
+                  onPress={() => router.canGoBack()} // Dismisses the modal
+                />
+              </Link>
+            )}
+          </View>
 
-        {/* Textbox using React Native Paper's TextInput */}
-        <TextInput
-          label="Journal Away..."
-          mode="outlined"
-          style={styles.textBox}
-          value={text}
-          onChangeText={setText}
-          multiline
-        />
-        <Button icon={"check"} mode="contained" onPress={() => createJournal()}>
-          Submit Journal
-        </Button>
-      </View>
+          {/* Textbox using React Native Paper's TextInput */}
+          <TextInput
+            label="Journal Away..."
+            mode="outlined"
+            style={styles.textBox}
+            value={text}
+            onChangeText={setText}
+            multiline
+          />
+          <Button
+            icon={"check"}
+            mode="contained"
+            onPress={() => createJournal()}
+          >
+            Submit Journal
+          </Button>
+        </View>
+      </TouchableWithoutFeedback>
       <Snackbar visible={visible} onDismiss={onDismissSnackBar}>
         {snackbarMessage}
       </Snackbar>

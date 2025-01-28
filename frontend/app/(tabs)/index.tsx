@@ -1,6 +1,6 @@
 import { Link, router } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import {
   ActivityIndicator,
   Divider,
@@ -113,7 +113,7 @@ export default function HomeScreen() {
       try {
         // Replace with your API URL
         const timeZone = Localization.getCalendars()[0].timeZone;
-        const apiUrl = `http://127.0.0.1:5000/getWeather?latitude=${userLocation.location.coords.latitude}&longitude=${userLocation.location.coords.longitude}&timezone=${timeZone}`;
+        const apiUrl = `https://my-weather-journal-4d528b61db0e.herokuapp.com/getWeather?latitude=${userLocation.location.coords.latitude}&longitude=${userLocation.location.coords.longitude}&timezone=${timeZone}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
@@ -144,7 +144,7 @@ export default function HomeScreen() {
   }
   return (
     <>
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {/* Top Section: City and Temperature */}
         <View style={styles.topSection}>
           <Text variant="headlineSmall" style={styles.cityText}>
@@ -175,24 +175,17 @@ export default function HomeScreen() {
             </View>
           ))}
         </View>
-      </View>
+      </ScrollView>
       <Link
         href={{
           pathname: "/journalModal",
           params: weatherData,
         }}
+        style={styles.fab}
+        asChild
       >
-        <FAB icon="plus" style={styles.fab} />
+        <FAB icon="plus" />
       </Link>
-      <Portal>
-        <Modal
-          visible={visible}
-          onDismiss={hideModal}
-          contentContainerStyle={containerStyle}
-        >
-          <Text>Example Modal. Click outside this area to dismiss.</Text>
-        </Modal>
-      </Portal>
     </>
   );
 }
@@ -200,6 +193,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // height: "100%",
     backgroundColor: "white",
   },
   topSection: {
@@ -249,8 +243,7 @@ const styles = StyleSheet.create({
   },
   fab: {
     position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0,
+    right: 20,
+    bottom: 100,
   },
 });

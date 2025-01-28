@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList, ActivityIndicator } from "react-native";
-import { Divider, List, Text } from "react-native-paper";
+import { Divider, Icon, List, Text } from "react-native-paper";
 import { Link, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 
@@ -9,12 +9,21 @@ export default function JournalList() {
 
   const renderJournalItem = ({ item }: any) => (
     <Link href={{ pathname: `./journals/${item.date}`, params: journals.date }}>
-      <List.Item title={item.date} />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <List.Item title={"View " + item.date} />
+        <Icon source="chevron-right" size={20} />
+      </View>
     </Link>
   );
 
   const fetchJournals = async () => {
-    const apiUrl = `http://127.0.0.1:5000/getAllJournals`;
+    const apiUrl = `https://my-weather-journal-4d528b61db0e.herokuapp.com/getAllJournals`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     console.log(data);

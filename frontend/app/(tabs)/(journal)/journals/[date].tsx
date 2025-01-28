@@ -12,7 +12,7 @@ const JournalEntryPage = () => {
   const params = useLocalSearchParams();
 
   const fetchJournal = async () => {
-    const apiUrl = `http://127.0.0.1:5000/getJournalByDate?date=${params.date}`;
+    const apiUrl = `https://my-weather-journal-4d528b61db0e.herokuapp.com/getJournalByDate?date=${params.date}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
 
@@ -45,10 +45,7 @@ const JournalEntryPage = () => {
   }
   return (
     <>
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.container}
-      >
+      <ScrollView style={styles.scrollView}>
         {/* Text Input Section: Text Field for Journal Entry */}
         <View>
           <Text style={styles.textInput} variant="headlineLarge">
