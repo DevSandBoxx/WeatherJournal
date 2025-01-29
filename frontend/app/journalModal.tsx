@@ -15,7 +15,7 @@ import {
 import { useNavigation } from "@react-navigation/native"; // Assuming React Navigation is used
 import { Link, router, useLocalSearchParams } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-
+import margins from "./constants/margins";
 export default function Modal() {
   const navigation = useNavigation(); // Hook for navigation
   const [text, setText] = useState(""); // State to handle textbox input
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: "space-between",
     flexDirection: "row",
-    marginBottom: 10,
+    marginBottom: margins.marginBottom,
   },
   textBox: {
     flex: 1,
@@ -113,6 +113,6 @@ const styles = StyleSheet.create({
     color: "#333",
     paddingHorizontal: 10,
     paddingVertical: 10,
-    marginBottom: 10,
+    marginBottom: margins.marginBottom,
   },
 });
